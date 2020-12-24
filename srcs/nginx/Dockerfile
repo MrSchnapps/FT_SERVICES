@@ -33,4 +33,4 @@ EXPOSE 443
 COPY srcs/init.sh /
 RUN chmod +x init.sh
 
-CMD "/init.sh"
+CMD /init.sh
