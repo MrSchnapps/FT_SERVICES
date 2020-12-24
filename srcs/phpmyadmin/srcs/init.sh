@@ -1,10 +1,11 @@
 #!/bin/sh
 
-#echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
-
 openrc
 touch /run/openrc/softlevel
-#/etc/init.d/sshd start
+
+rc-update add php-fpm7 default
+rc-service php-fpm7 restart
 
 nginx -t || exit 1
+
 nginx -g 'daemon off;'
