@@ -39,6 +39,6 @@ spec:
   selector:
     app: ftps
   ports:
-    - name: http
+    - name: ftps
       port: 21
       targetPort: 21
