@@ -22,8 +22,8 @@ spec:
         image: nginx-img
         imagePullPolicy: Never
         ports:
-          - containerPort: 80
           - containerPort: 22
+          - containerPort: 80
           - containerPort: 443
 
 
@@ -43,11 +43,15 @@ spec:
     app: nginx
   ports:
     - name: http
+      protocol: TCP
       port: 80
       targetPort: 80
     - name: https
+      protocol: TCP
       port: 443
       targetPort: 443
     - name: ssh
+      protocol: TCP
       port: 22
       targetPort: 22
+      

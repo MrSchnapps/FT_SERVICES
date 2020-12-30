@@ -12,7 +12,6 @@ RUN tar -xvf wordpress.tar.gz \
 && rm -rf var/www \
 && mv wordpress var/www
 
-
 COPY srcs/nginx.conf /etc/nginx/conf.d
 RUN mkdir -p /run/nginx \
 && rm /etc/nginx/conf.d/default.conf
