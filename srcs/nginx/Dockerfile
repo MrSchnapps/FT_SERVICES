@@ -19,15 +19,14 @@ COPY srcs/index.html /www/index.html
 RUN rm /etc/nginx/conf.d/default.conf 
 COPY srcs/nginx.conf /etc/nginx/conf.d/nginx.conf
 
-#COPY srcs/nginx.conf /etc/nginx/nginx.conf
-#COPY srcs/index.html /www/index.html
-
-#ssh user and ssl key
 RUN mkdir -p /etc/ssl/certs/private
-#RUN adduser -D user
-#RUN echo "user:password"|chpasswd
 RUN ssh-keygen -A
 RUN yes "" | openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/certs/private/ssl_nginx.key -out /etc/ssl/certs/ssl_nginx.certs
+
+RUN curl 'https://dl.influxdata.com/telegraf/releases/telegraf-1.16.0_linux_i386.tar.gz' > telegraf.tar.gz && \
+    tar xvf telegraf.tar.gz && \
+    mv 'telegraf-1.16.0' telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 EXPOSE 22
 EXPOSE 80
